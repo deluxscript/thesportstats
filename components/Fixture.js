@@ -12,7 +12,7 @@ export default function Fixture({ id, teams, time, status}) {
          <div className="w-1/5">{ status.long }</div>
          <div>
             <Link href={`/fixtures/${id}`}>
-               <a target="_blank" className="rounded-md border p-2">
+               <a className="rounded-md border p-2">
                   stats
                </a>
             </Link>
