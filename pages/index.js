@@ -5,8 +5,8 @@ import { getFixtures } from '../lib/api'
 export default function Home(data) {
    const fixtureData = data.data.response
    const groupedData = fixtureData.reduce((obj, item) => {
-      const res = obj[item.league.name] || []
-      return {...obj, [item.league.name]: [...res, item]}
+      const res = obj[item.league.id] || []
+      return {...obj, [item.league.id]: [...res, item]}
    }, {})
 
   return (
@@ -14,7 +14,7 @@ export default function Home(data) {
        <div className="container mx-auto">
          {Object.entries(groupedData).map((evt) => (
             <div className="py-2" key={ evt }>
-               <LeagueBox leagueTitle = { evt[0] } details = { evt[1] } />
+               <LeagueBox details = { evt[1] } />
             </div>
          ))}
        </div>

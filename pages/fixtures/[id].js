@@ -1,15 +1,13 @@
 import Layout from '../../components/Layout'
 import SingleTeamStat from '../../components/singleTeamStat'
-import { getFixtures, getTeamStats } from '../../lib/api'
+import { getFixtures, getTeamStats, head2head, teamStanding } from '../../lib/api'
 
-export default function BrandPage({ homeStat, awayStat, fixtureData }) {
-   console.log('homestat', homeStat)
-   console.log('awaystat', awayStat)
-   console.log('fixturedata', fixtureData)
+export default function BrandPage({ homeStat, awayStat, h2hStats, leagueStanding, homeTeamStanding, awayTeamStanding }) {
+   const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
    return (
       <Layout>
          <div className="container mx-auto">
-            <SingleTeamStat home = { homeStat } away = { awayStat } />
+            <SingleTeamStat home = { homeStat } away = { awayStat } h2h = { sortH2H } />
          </div>
       </Layout>
    )
@@ -21,9 +19,13 @@ export async function getServerSideProps({ query: { id }}) {
    const homeTeam = getTeamData.response[0].teams.home.id
    const awayTeam = getTeamData.response[0].teams.away.id
 
-   const [getHomeTeamStat, getAwayTeamStat] = await Promise.all([
+   const [getHomeTeamStat, getAwayTeamStat, getHead2Head, getStandings, getHomeTeamStanding, getAwayTeamStanding] = await Promise.all([
       getTeamStats(`team=${homeTeam}&season=2021&league=${getLeague}`),
-      getTeamStats(`team=${awayTeam}&season=2021&league=${getLeague}`)
+      getTeamStats(`team=${awayTeam}&season=2021&league=${getLeague}`),
+      head2head(`h2h=${homeTeam}-${awayTeam}&status=ft`),
+      teamStanding(`league=${getLeague}&season=2021`),
+      teamStanding(`league=${getLeague}&season=2021&team=${homeTeam}`),
+      teamStanding(`league=${getLeague}&season=2021&team=${awayTeam}`)
    ])
 
 
@@ -31,7 +33,10 @@ export async function getServerSideProps({ query: { id }}) {
       props: {
          homeStat: getHomeTeamStat,
          awayStat: getAwayTeamStat,
-         fixtureData: getTeamData
+         h2hStats: getHead2Head,
+         leagueStanding: getStandings,
+         homeTeamStanding: getHomeTeamStanding,
+         awayTeamStanding: getAwayTeamStanding
       },
    }
  }
