@@ -22,7 +22,7 @@ export default function Home(data) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
    const today = new Date().toISOString().slice(0, 10)
    const getFixture = await getFixtures(`date=${today}`)
 
