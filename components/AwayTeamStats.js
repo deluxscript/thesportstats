@@ -38,7 +38,6 @@ export default function AwayTeamStat({ stats }) {
                </tr>
             </tbody>
          </table>
-         <h1 className="my-2">Other Statistics</h1>
       </div>
   )
 }
