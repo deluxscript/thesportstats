@@ -29,6 +29,7 @@ export async function getStaticProps() {
    return {
       props: {
          data: getFixture
-      }
+      },
+      revalidate: 1
    }
 }
