@@ -6,7 +6,7 @@ export default function BrandPage({ homeStat, awayStat, h2hStats, leagueStanding
    const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
    return (
       <Layout>
-         <div className="container mx-auto">
+         <div>
             <SingleTeamStat home = { homeStat } away = { awayStat } h2h = { sortH2H } />
          </div>
       </Layout>
