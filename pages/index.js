@@ -1,6 +1,10 @@
+import Image from 'next/image'
 import Layout from '../components/Layout'
 import LeagueBox from '../components/LeagueBox'
 import { getFixtures } from '../lib/api'
+
+import banner1 from '../public/images/banner.png'
+import banner2 from '../public/images/banner2.png'
 
 export default function Home(data) {
    const fixtureData = data.data.response
@@ -11,7 +15,7 @@ export default function Home(data) {
 
   return (
     <Layout>
-       <div className="container mx-auto">
+       <div>
          {Object.entries(groupedData).map((evt) => (
             <div className="py-2" key={ evt }>
                <LeagueBox details = { evt[1] } />

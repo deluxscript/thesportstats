@@ -14,7 +14,7 @@ export default function SingleTeamStat({home, away, h2h}) {
 
    return (
       <div>
-         <div className="grid grid-cols-2 gap-4">
+         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             <div className="homeTeam">
                <div className="text-center">
                   <Image src = {homeResponse.team.logo} alt = { homeResponse.team.name } width={80} height={80} />

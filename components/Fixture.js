@@ -8,8 +8,8 @@ export default function Fixture({ id, teams, time, status}) {
          <div className="w-1/4"><Image src={ teams.home.logo } alt="country_flag" width={20} height={20}/> { teams.home.name }</div>
          <div className="w-1/12">vs</div>
          <div className="w-1/4"><Image src={ teams.away.logo } alt="country_flag" width={20} height={20}/> { teams.away.name }</div>
-         <div className="w-1/12">{ formatTime(time)}</div>
-         <div className="w-1/5">{ status.long }</div>
+         <div className="w-1/12 text-xs">{ formatTime(time)}</div>
+         <div className="md:w-1/5 text-xs">{ status.short }</div>
          <div>
             <Link href={`/fixtures/${id}`}>
                <a className="rounded-md border p-2">

@@ -1,8 +1,8 @@
 export default function HomeTeamStat({stats}) {
   return (
      <div className="py-8">
-      <h1 className="my-2">Stats Summary</h1>
-      <table className="table-fixed w-3/4">
+      <h1 className="my-2 text-lg">Stats Summary</h1>
+      <table className="table-fixed md:w-3/4 w-full">
          <thead>
             <tr>
                <th className="w-1/4"></th>
