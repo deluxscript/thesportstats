@@ -18,7 +18,7 @@ export default function SingleTeamStat({home, away, h2h}) {
             <div className="homeTeam">
                <div className="text-center">
                   <Image src = {homeResponse.team.logo} alt = { homeResponse.team.name } width={80} height={80} />
-                  <h1 className="py-2">{ homeResponse.team.name }</h1>
+                  <h1 className="py-2 text-white">{ homeResponse.team.name }</h1>
                   <p>{ Array.isArray(formattedHomeForm) ? formattedHomeForm.map((form, index) => {
                      return (form === "L") ? <span className="bg-red-500 text-white px-2 py-1" key={index}>{form}</span> : (form === "W") ? <span className="bg-green-500 text-white px-2 py-1" key={index}>{form}</span> : <span className="bg-gray-500 text-white px-2 py-1" key={index}>{form}</span>
                   })  : "Form unavailable"}</p>
@@ -29,7 +29,7 @@ export default function SingleTeamStat({home, away, h2h}) {
             <div className="awayTeam">
                <div className="text-center">
                   <Image src = {awayResponse.team.logo} alt = { awayResponse.team.name } width={80} height={80} />
-                  <h1 className="py-2">{ awayResponse.team.name }</h1>
+                  <h1 className="py-2 text-white">{ awayResponse.team.name }</h1>
                   <p>{ Array.isArray(formattedAwayForm) ? formattedAwayForm.map((form, index) => {
                      return (form === "L") ? <span className="bg-red-500 text-white px-2 py-1" key={index}>{form}</span> : (form === "W") ? <span className="bg-green-500 text-white px-2 py-1" key={index}>{form}</span> : <span className="bg-gray-500 text-white px-2 py-1" key={index}>{form}</span>
                   }) : "Form unavailable"}</p>
