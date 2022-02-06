@@ -7,12 +7,12 @@ export default function Head2Head({ h2h, homeName, awayName }) {
       const awayScore = stats.score.fulltime.away
       const winner = Math.max(homeScore, awayScore)
       return (
-         <div key = {stats.fixture.id} className="py-1 border-b-2">
-            <div className="w-1/12 text-xs font-bold">{ date }</div>
+         <div key = {stats.fixture.id} className="py-1 border-teamBorderBottom border-b text-white">
+            <div className="w-1/5 p-1 text-xs bg-h2hBg font-medium">{ date }</div>
             <div className="flex flex-row text-sm">
                <div className="w-2/6">{homeTeam}</div>
                <div className="w-1/6">
-                  <span className="bg-gray-400 text-white p-2 rounded-md">{homeScore} : {awayScore}</span>
+                  <span className="bg-h2hBg text-white p-2 rounded-md">{homeScore} : {awayScore}</span>
                </div>
                <div className="w-2/6">{awayTeam}</div>
                <div className="w-1/12 text-center">
@@ -34,7 +34,7 @@ export default function Head2Head({ h2h, homeName, awayName }) {
    })
    return (
       <div className="py-8">
-         <h1 className="my-2 text-lg">Previous Meetings</h1>
+         <h1 className="my-2 text-lg text-white">Previous Meetings</h1>
          <div className ="flex flex-col">
             { displayH2H }
          </div>
