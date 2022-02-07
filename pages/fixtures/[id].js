@@ -2,7 +2,7 @@ import Layout from '../../components/Layout'
 import SingleTeamStat from '../../components/singleTeamStat'
 import { getFixtures, getTeamStats, head2head, teamStanding } from '../../lib/api'
 
-export default function BrandPage({ homeStat, awayStat, h2hStats, leagueStanding, homeTeamStanding, awayTeamStanding }) {
+const BrandPage = ({ homeStat, awayStat, h2hStats, leagueStanding, homeTeamStanding, awayTeamStanding }) => {
    const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
    return (
       <Layout>
@@ -40,3 +40,5 @@ export async function getServerSideProps({ query: { id }}) {
       },
    }
  }
+
+ export default BrandPage
