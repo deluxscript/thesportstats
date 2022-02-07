@@ -22,15 +22,15 @@ export default function Layout({ title, keywords, description, children }) {
       <div className="container mx-auto">
          <div className="flex flex-col md:flex-row">
             <div className="md:w-1/6 py-4 text-center">
-               <Image src = {banner1} alt = "banner" width={200} />
-               <Image src = {banner2} alt = "banner" width={200} />
+               {/* <Image src = {banner1} alt = "banner" width={200} />
+               <Image src = {banner2} alt = "banner" width={200} /> */}
             </div>
             <div className="md:w-4/6 px-4">
                {children}
             </div>
             <div className="md:w-1/6 py-4 text-center">
-               <Image src = {banner1} alt = "banner" width={200} />
-               <Image src = {banner2} alt = "banner" width={200} />
+               {/* <Image src = {banner1} alt = "banner" width={200} />
+               <Image src = {banner2} alt = "banner" width={200} /> */}
             </div>
          </div>
       </div>
