@@ -3,7 +3,18 @@ import HomeTeamStat from './HomeTeamStats'
 import AwayTeamStat from './AwayTeamStats'
 import Head2Head from './Head2Head'
 
-export default function SingleTeamStat({home, away, h2h}) {
+export default function SingleTeamStat({
+   home,
+   away,
+   h2h,
+   last5HomeResults,
+   last10HomeResults,
+   last15HomeResults,
+   last5AwayResults,
+   last10AwayResults,
+   last15AwayResults,
+}) {
+   console.log(last10AwayResults)
    const homeResponse = home.response
    const awayResponse = away.response
    const homeForm = homeResponse.form ? homeResponse.form.split("") : "No Form available"
