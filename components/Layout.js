@@ -38,9 +38,3 @@ export default function Layout({ title, keywords, description, children }) {
     </div>
   )
 }
-
-Layout.defaultProps = {
-  title: 'TheFootballStats | Football Stats and analysis',
-  description: 'TheFootballStats features statistics across all football leagues in the world',
-  keywords: 'football, soccer, stats, statistics, tables, database, standings, form, results, top scorers, form tables, football statistics, ladder, league tables',
-}

@@ -37,3 +37,8 @@ export async function getStaticProps() {
       revalidate: 1
    }
 }
+Layout.defaultProps = {
+   title: 'TheSoccerStats | Football Stats and analysis',
+   description: 'TheSoccerStats features statistics across all football leagues in the world',
+   keywords: 'football, thesoccerstats, soccer, stats, statistics, tables, database, standings, form, results, top scorers, form tables, football statistics, ladder, league tables',
+ }
