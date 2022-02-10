@@ -6,6 +6,7 @@ const BrandPage = ({
    homeTeam,
    awayTeam,
    getLeague,
+   getCountry,
    homeStat,
    awayStat,
    h2hStats,
@@ -23,7 +24,7 @@ const BrandPage = ({
    Layout.defaultProps = {
       title: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, season 2021/2022`,
       description: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, match analysis powered by TheSoccerStats`,
-      keywords: `${homeTeam} vs ${awayTeam} head to head, ${homeTeam}, ${awayTeam}, ${homeTeam} statistics, ${awayTeam} statistics, ${getLeague} statistics, football, soccer, stats, statistics, tables, database, standings, form, results, top scorers, form tables, football statistics, ladder, league tables`,
+      keywords: `${homeTeam} vs ${awayTeam} head to head, ${homeTeam}, ${awayTeam}, ${homeTeam} statistics, ${awayTeam} statistics, ${getCountry} ${getLeague} statistics, football, soccer, stats, statistics, tables, database, standings, form, results, top scorers, form tables, football statistics, ladder, league tables`,
     }
    return (
       <Layout>
@@ -39,6 +40,7 @@ const BrandPage = ({
                last10AwayResults = { last10AwayResults }
                last15AwayResults = { last15AwayResults }
                getLeague = { getLeague }
+               getCountry = { getCountry }
             />
          </div>
       </Layout>
@@ -50,6 +52,7 @@ export async function getServerSideProps({ query: { id }}) {
    const getLeague = getTeamData.response[0].league
    const homeTeam = getTeamData.response[0].teams.home
    const awayTeam = getTeamData.response[0].teams.away
+   console.log(getLeague)
 
    const [
       getHomeTeamStat,
@@ -85,6 +88,7 @@ export async function getServerSideProps({ query: { id }}) {
          homeTeam: homeTeam.name,
          awayTeam: awayTeam.name,
          getLeague: getLeague.name,
+         getCountry: getLeague.country,
          homeStat: getHomeTeamStat,
          awayStat: getAwayTeamStat,
          h2hStats: getHead2Head,
