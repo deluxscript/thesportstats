@@ -8,6 +8,7 @@ export default function SingleTeamStat({
    away,
    h2h,
    getLeague,
+   getCountry,
    last5HomeResults,
    last10HomeResults,
    last15HomeResults,
@@ -102,9 +103,10 @@ export default function SingleTeamStat({
    
    const formattedHomeForm = (homeForm.length > 6) ? homeForm.slice(homeForm.length - 6, homeForm.length) : homeForm
    const formattedAwayForm = (awayForm.length > 6) ? awayForm.slice(awayForm.length - 6, awayForm.length) : awayForm
-
+console.log(getLeague)
    return (
       <div>
+         <h1 className="text-2xl text-white text-center py-4">{getCountry} - {getLeague}</h1>
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             <div className="homeTeam">
                <div className="text-center">
