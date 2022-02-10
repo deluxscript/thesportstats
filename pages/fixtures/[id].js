@@ -52,7 +52,6 @@ export async function getServerSideProps({ query: { id }}) {
    const getLeague = getTeamData.response[0].league
    const homeTeam = getTeamData.response[0].teams.home
    const awayTeam = getTeamData.response[0].teams.away
-   console.log(getLeague)
 
    const [
       getHomeTeamStat,
