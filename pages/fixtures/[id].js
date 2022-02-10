@@ -3,6 +3,9 @@ import SingleTeamStat from '../../components/singleTeamStat'
 import { getFixtures, getResults, getTeamStats, head2head, teamStanding } from '../../lib/api'
 
 const BrandPage = ({
+   homeTeam,
+   awayTeam,
+   getLeague,
    homeStat,
    awayStat,
    h2hStats,
@@ -17,6 +20,12 @@ const BrandPage = ({
    awayTeamStanding
 }) => {
    const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
+   const hh = 'hello'
+   Layout.defaultProps = {
+      title: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, season 2021/2022`,
+      description: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, match analysis powered by TheSoccerStats`,
+      keywords: `${homeTeam} vs ${awayTeam} head to head, ${homeTeam}, ${awayTeam}, ${homeTeam} statistics, ${awayTeam} statistics, ${getLeague} statistics, football, soccer, stats, statistics, tables, database, standings, form, results, top scorers, form tables, football statistics, ladder, league tables`,
+    }
    return (
       <Layout>
          <div>
@@ -38,9 +47,9 @@ const BrandPage = ({
 
 export async function getServerSideProps({ query: { id }}) {
    const getTeamData = await getFixtures(`id=${id}`)
-   const getLeague = getTeamData.response[0].league.id
-   const homeTeam = getTeamData.response[0].teams.home.id
-   const awayTeam = getTeamData.response[0].teams.away.id
+   const getLeague = getTeamData.response[0].league
+   const homeTeam = getTeamData.response[0].teams.home
+   const awayTeam = getTeamData.response[0].teams.away
 
    const [
       getHomeTeamStat,
@@ -56,23 +65,26 @@ export async function getServerSideProps({ query: { id }}) {
       last10AwayResults,
       last15AwayResults,
    ] = await Promise.all([
-      getTeamStats(`team=${homeTeam}&season=2021&league=${getLeague}`),
-      getTeamStats(`team=${awayTeam}&season=2021&league=${getLeague}`),
-      head2head(`h2h=${homeTeam}-${awayTeam}&status=ft`),
-      teamStanding(`league=${getLeague}&season=2021`),
-      teamStanding(`league=${getLeague}&season=2021&team=${homeTeam}`),
-      teamStanding(`league=${getLeague}&season=2021&team=${awayTeam}`),
-      getResults(`league=${getLeague}&season=2021&team=${homeTeam}&last=5`),
-      getResults(`league=${getLeague}&season=2021&team=${homeTeam}&last=10`),
-      getResults(`league=${getLeague}&season=2021&team=${homeTeam}&last=15`),
-      getResults(`league=${getLeague}&season=2021&team=${awayTeam}&last=5`),
-      getResults(`league=${getLeague}&season=2021&team=${awayTeam}&last=10`),
-      getResults(`league=${getLeague}&season=2021&team=${awayTeam}&last=15`),
+      getTeamStats(`team=${homeTeam.id}&season=2021&league=${getLeague.id}`),
+      getTeamStats(`team=${awayTeam.id}&season=2021&league=${getLeague.id}`),
+      head2head(`h2h=${homeTeam.id}-${awayTeam.id}&status=ft`),
+      teamStanding(`league=${getLeague.id}&season=2021`),
+      teamStanding(`league=${getLeague.id}&season=2021&team=${homeTeam.id}`),
+      teamStanding(`league=${getLeague.id}&season=2021&team=${awayTeam.id}`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=5`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=10`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=15`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=5`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=10`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=15`),
    ])
 
 
    return {
       props: {
+         homeTeam: homeTeam.name,
+         awayTeam: awayTeam.name,
+         getLeague: getLeague.name,
          homeStat: getHomeTeamStat,
          awayStat: getAwayTeamStat,
          h2hStats: getHead2Head,
