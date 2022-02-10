@@ -20,7 +20,6 @@ const BrandPage = ({
    awayTeamStanding
 }) => {
    const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
-   const hh = 'hello'
    Layout.defaultProps = {
       title: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, season 2021/2022`,
       description: `${homeTeam} vs ${awayTeam} head to head, preview and statistics, match analysis powered by TheSoccerStats`,
@@ -39,6 +38,7 @@ const BrandPage = ({
                last5AwayResults = { last5AwayResults }
                last10AwayResults = { last10AwayResults }
                last15AwayResults = { last15AwayResults }
+               getLeague = { getLeague }
             />
          </div>
       </Layout>
@@ -71,12 +71,12 @@ export async function getServerSideProps({ query: { id }}) {
       teamStanding(`league=${getLeague.id}&season=2021`),
       teamStanding(`league=${getLeague.id}&season=2021&team=${homeTeam.id}`),
       teamStanding(`league=${getLeague.id}&season=2021&team=${awayTeam.id}`),
-      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=5`),
-      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=10`),
-      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=15`),
-      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=5`),
-      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=10`),
-      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=15`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=5&status=FT`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=10&status=FT`),
+      getResults(`league=${getLeague.id}&season=2021&team=${homeTeam.id}&last=15&status=FT`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=5&status=FT`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=10&status=FT`),
+      getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=15&status=FT`),
    ])
 
 
@@ -94,7 +94,7 @@ export async function getServerSideProps({ query: { id }}) {
          last5HomeResults: last5HomeResults,
          last10HomeResults: last10HomeResults,
          last15HomeResults: last15HomeResults,
-         last5HomeResults: last5AwayResults,
+         last5AwayResults: last5AwayResults,
          last10AwayResults: last10AwayResults,
          last15AwayResults: last15AwayResults,
       },
