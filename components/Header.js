@@ -9,7 +9,7 @@ export default function Header() {
          <div className="flex flex-row items-center justify-between" style={{height: "inherit"}}>
             <div>
                <Link href='/'>
-                  <a><Image src = {logo} alt = "TheSoccerStats" height={120} width={240} /></a>
+                  <a><Image src = {logo} alt = "TheSoccerStats" height={150} width={300} /></a>
                </Link>
             </div>
             <div className='text-white'>

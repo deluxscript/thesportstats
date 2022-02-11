@@ -103,7 +103,6 @@ export default function SingleTeamStat({
    
    const formattedHomeForm = (homeForm.length > 6) ? homeForm.slice(homeForm.length - 6, homeForm.length) : homeForm
    const formattedAwayForm = (awayForm.length > 6) ? awayForm.slice(awayForm.length - 6, awayForm.length) : awayForm
-console.log(getLeague)
    return (
       <div>
          <h1 className="text-2xl text-white text-center py-4">{getCountry} - {getLeague}</h1>
