@@ -1,9 +1,9 @@
-import * as Panelbear from "@panelbear/panelbear-js";
+import { usePanelbear } from "@panelbear/panelbear-nextjs";
 import Script from 'next/script'
 import '../styles/globals.css'
 
 const MyApp = ({ Component, pageProps }) => {
-   Panelbear.load("I7MDLcEpJEM", { scriptSrc: "/bear.js" });
+   usePanelbear("I7MDLcEpJEM");
    return (
       <>
          <Script

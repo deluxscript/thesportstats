@@ -12,10 +12,13 @@ export default function Home(data) {
       const res = obj[item.league.id] || []
       return {...obj, [item.league.id]: [...res, item]}
    }, {})
+   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+   var today  = new Date();
 
   return (
     <Layout>
        <div>
+       <h1 className="text-white text-lg py-4 text-center font-bold  bg-statsBgColor rounded-3xl mb-4">{ today.toLocaleDateString("en-US", options) }</h1>
          {Object.entries(groupedData).map((evt) => (
             <div className="py-2" key={ evt }>
                <LeagueBox details = { evt[1] } />
