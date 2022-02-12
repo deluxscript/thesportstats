@@ -3,9 +3,7 @@ import Script from 'next/script'
 import '../styles/globals.css'
 
 const MyApp = ({ Component, pageProps }) => {
-   usePanelbear('I7MDLcEpJEM', {
-      debug: true
-    });
+   usePanelbear(`${process.env.NEXT_PANEL_BEAR_ID}`);
    return (
       <>
          <Script
