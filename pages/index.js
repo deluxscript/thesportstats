@@ -19,6 +19,7 @@ export default function Home(data) {
     <Layout>
        <div>
        <h1 className="text-white text-lg py-4 text-center font-bold  bg-statsBgColor rounded-3xl mb-4">{ today.toLocaleDateString("en-US", options) }</h1>
+       <p className="text-white test-xs mb-4">NS: Not Started FT:  Match Finished | PST: Postponded | 1H: First Half | 2H: Second half | HT : Halftime </p>
          {Object.entries(groupedData).map((evt) => (
             <div className="py-2" key={ evt }>
                <LeagueBox details = { evt[1] } />
