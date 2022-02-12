@@ -8,10 +8,13 @@ export const getServerSideProps = async (ctx) => {
    let fields = []
    for (const element of getAllFixtures.response) {
       const id = element.fixture.id
-      fields.push({
-         loc: `https://www.thesoccerstats.com/fixtures/${id}`,
-         lastmod: new Date().toISOString(),
-      })
+      if((element.teams.home.name) && (element.teams.away.name)){
+         fields.push({
+            loc: `https://www.thesoccerstats.com/fixtures/${(element.teams.home.name).toLowerCase().replace(/\s+/g, '-').replace(/&/g, "&amp;")}-vs-${(element.teams.away.name).toLowerCase().replace(/\s+/g, '-').replace(/&/g, "&amp;")}?id=${id}`,
+            lastmod: new Date().toISOString(),
+         })
+      }
+      
    }
 
 return getServerSideSitemap(ctx, fields);
