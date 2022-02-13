@@ -2,6 +2,7 @@ import Image from 'next/image'
 import HomeTeamStat from './HomeTeamStats'
 import AwayTeamStat from './AwayTeamStats'
 import Head2Head from './Head2Head'
+import Statistics from './Statistics'
 
 export default function SingleTeamStat({
    home,
@@ -15,8 +16,8 @@ export default function SingleTeamStat({
    last5AwayResults,
    last10AwayResults,
    last15AwayResults,
+   getFixtureStatistics
 }) {
-
    let homeWinsIn5 = []
    let homeWinsIn5Goals = 0
    for (const element of last5HomeResults.response){
@@ -139,6 +140,9 @@ export default function SingleTeamStat({
             <p><b>{awayResponse.team.name}</b> have won <b>{awayWinsIn5.length} matches</b> in the last <b>5 matches</b> in the {getLeague} with an average of <b>{(awayWinsIn5Goals/5).toFixed(1)} goals</b> per match</p>
             <p><b>{awayResponse.team.name}</b> have won <b>{awayWinsIn10.length} matches</b> in the last <b>10 matches</b> in the {getLeague} with an average of <b>{(awayWinsIn10Goals/10).toFixed(1)} goals</b> per match</p>
             <p><b>{awayResponse.team.name}</b> have won <b>{awayWinsIn15.length} matches</b> in the last <b>15 matches</b> in the {getLeague} with an average of <b>{(awayWinsIn15Goals/15).toFixed(1)} goals</b> per match</p>
+         </div>
+         <div>
+            <Statistics stats = { getFixtureStatistics } />
          </div>
       </div>
    )

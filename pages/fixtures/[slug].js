@@ -1,6 +1,13 @@
 import Layout from '../../components/Layout'
 import SingleTeamStat from '../../components/singleTeamStat'
-import { getFixtures, getResults, getTeamStats, head2head, teamStanding } from '../../lib/api'
+import {
+   getFixtures,
+   getResults,
+   getTeamStats,
+   head2head,
+   teamStanding,
+   getStatistics
+} from '../../lib/api'
 
 const BrandPage = ({
    homeTeam,
@@ -18,7 +25,8 @@ const BrandPage = ({
    last15AwayResults,
    leagueStanding,
    homeTeamStanding,
-   awayTeamStanding
+   awayTeamStanding,
+   getFixtureStatistics
 }) => {
    const sortH2H = h2hStats.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
    Layout.defaultProps = {
@@ -41,6 +49,7 @@ const BrandPage = ({
                last15AwayResults = { last15AwayResults }
                getLeague = { getLeague }
                getCountry = { getCountry }
+               getFixtureStatistics = { getFixtureStatistics }
             />
          </div>
       </Layout>
@@ -66,6 +75,7 @@ export async function getServerSideProps({ query: { id }}) {
       last5AwayResults,
       last10AwayResults,
       last15AwayResults,
+      getFixtureStatistics
    ] = await Promise.all([
       getTeamStats(`team=${homeTeam.id}&season=2021&league=${getLeague.id}`),
       getTeamStats(`team=${awayTeam.id}&season=2021&league=${getLeague.id}`),
@@ -79,8 +89,8 @@ export async function getServerSideProps({ query: { id }}) {
       getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=5&status=FT`),
       getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=10&status=FT`),
       getResults(`league=${getLeague.id}&season=2021&team=${awayTeam.id}&last=15&status=FT`),
+      getStatistics(`fixture=${id}`)
    ])
-
 
    return {
       props: {
@@ -100,6 +110,7 @@ export async function getServerSideProps({ query: { id }}) {
          last5AwayResults: last5AwayResults,
          last10AwayResults: last10AwayResults,
          last15AwayResults: last15AwayResults,
+         getFixtureStatistics: getFixtureStatistics
       },
    }
  }
