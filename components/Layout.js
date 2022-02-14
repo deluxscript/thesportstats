@@ -9,12 +9,13 @@ import banner2 from '../public/images/banner2.png'
 
 export default function Layout({ title, keywords, description, children }) {
   const router = useRouter()
-
+  const url = (router.pathname === '/') ? 'https://www.thesoccerstats.com' : `https://www.thesoccerstats.com${router.asPath}`
   return (
     <div>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href= {url} />
         <meta name='description' content={description} />
         <meta name='keywords' content={keywords} />
       </Head>
