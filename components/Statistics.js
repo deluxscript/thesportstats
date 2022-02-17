@@ -1,6 +1,5 @@
 export default function Statistics({ stats }) {
    const comp = stats.response[0].comparison
-   // console.log("stats", stats.response[0])
    return (
       <div className="py-8">
          <h1 className="my-2 text-lg text-white">Statistics</h1>
