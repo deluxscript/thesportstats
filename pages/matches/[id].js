@@ -1,10 +1,14 @@
-import DateNav from '../components/dateNav'
-import Layout from '../components/Layout'
-import LeagueBox from '../components/LeagueBox'
-import { getFixtures } from '../lib/api'
+import Image from 'next/image'
+import DateNav from '../../components/dateNav'
+import Layout from '../../components/Layout'
+import LeagueBox from '../../components/LeagueBox'
+import { getFixtures } from '../../lib/api'
 
-export default function Home(data) {
-   const fixtureData = data.data.response
+// import banner1 from '../public/images/banner.png'
+// import banner2 from '../public/images/banner2.png'
+
+export default function Date({data, day}) {
+   const fixtureData = data.response
    const groupedData = fixtureData.reduce((obj, item) => {
       const res = obj[item.league.id] || []
       return {...obj, [item.league.id]: [...res, item]}
@@ -24,15 +28,13 @@ export default function Home(data) {
   )
 }
 
-export async function getStaticProps() {
-   const today = new Date().toISOString().slice(0, 10)
-   const getFixture = await getFixtures(`date=${today}`)
-
+export async function getServerSideProps({ query: { id } }) {
+   const getFixture = await getFixtures(`date=${id}`)
    return {
       props: {
-         data: getFixture
-      },
-      revalidate: 1
+         data: getFixture,
+         day: id
+      }
    }
 }
 Layout.defaultProps = {
