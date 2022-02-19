@@ -26,7 +26,7 @@ export default function Home(data) {
 
 export async function getStaticProps() {
    const today = new Date().toISOString().slice(0, 10)
-   const getFixture = await getFixtures(`date=${today}`)
+   const getFixture = await getFixtures(`date=2022-02-18`)
 
    return {
       props: {
