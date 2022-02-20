@@ -1,3 +1,4 @@
+import {redis} from '../lib/redis'
 import DateNav from '../components/dateNav'
 import Layout from '../components/Layout'
 import LeagueBox from '../components/LeagueBox'
@@ -26,11 +27,21 @@ export default function Home(data) {
 
 export async function getStaticProps() {
    const today = new Date().toISOString().slice(0, 10)
-   const getFixture = await getFixtures(`date=${today}`)
+   const todayFixtures = `todayFixtures-${today}`
+   const value = await redis.get(todayFixtures)
+   let data = {}
+
+   if(value === null){
+      data = await getFixtures(`date=${today}`)
+      await redis.set(todayFixtures, JSON.stringify(data), "EX", 10800)
+   }
+   else {
+      data = JSON.parse(await redis.get(todayFixtures))
+   }
 
    return {
       props: {
-         data: getFixture
+         data: data
       },
       revalidate: 1
    }

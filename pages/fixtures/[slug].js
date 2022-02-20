@@ -64,7 +64,7 @@ export async function getServerSideProps({ query: { id }}) {
 
    if(value === null){
       getTeamData = await getFixtures(`id=${id}`)
-      await redis.set(singleFixture, JSON.stringify(getTeamData))
+      await redis.set(singleFixture, JSON.stringify(getTeamData), "EX", 129600)
    }
    else {
       getTeamData = JSON.parse(await redis.get(singleFixture))
@@ -136,19 +136,19 @@ export async function getServerSideProps({ query: { id }}) {
             getStatistics(`fixture=${id}`)
          ])
          await Promise.all([
-            redis.set(homeTeamStat, JSON.stringify(getHomeTeamStat)),
-            redis.set(awayTeamStat, JSON.stringify(getAwayTeamStat)),
-            redis.set(h2h, JSON.stringify(getHead2Head)),
-            redis.set(standings, JSON.stringify(getStandings)),
-            redis.set(homeStanding, JSON.stringify(getHomeTeamStanding)),
-            redis.set(awayStanding, JSON.stringify(getAwayTeamStanding)),
-            redis.set(last5Home, JSON.stringify(last5HomeResults)),
-            redis.set(last10Home, JSON.stringify(last10HomeResults)),
-            redis.set(last15Home, JSON.stringify(last15HomeResults)),
-            redis.set(last5Away, JSON.stringify(last5AwayResults)),
-            redis.set(last10Away, JSON.stringify(last10AwayResults)),
-            redis.set(last15Away, JSON.stringify(last15AwayResults)),
-            redis.set(FixStats, JSON.stringify(getFixtureStatistics))
+            redis.set(homeTeamStat, JSON.stringify(getHomeTeamStat), "EX", 129600),
+            redis.set(awayTeamStat, JSON.stringify(getAwayTeamStat), "EX", 129600),
+            redis.set(h2h, JSON.stringify(getHead2Head), "EX", 129600),
+            redis.set(standings, JSON.stringify(getStandings), "EX", 129600),
+            redis.set(homeStanding, JSON.stringify(getHomeTeamStanding), "EX", 129600),
+            redis.set(awayStanding, JSON.stringify(getAwayTeamStanding), "EX", 129600),
+            redis.set(last5Home, JSON.stringify(last5HomeResults), "EX", 129600),
+            redis.set(last10Home, JSON.stringify(last10HomeResults), "EX", 129600),
+            redis.set(last15Home, JSON.stringify(last15HomeResults), "EX", 129600),
+            redis.set(last5Away, JSON.stringify(last5AwayResults), "EX", 129600),
+            redis.set(last10Away, JSON.stringify(last10AwayResults), "EX", 129600),
+            redis.set(last15Away, JSON.stringify(last15AwayResults), "EX", 129600),
+            redis.set(FixStats, JSON.stringify(getFixtureStatistics), "EX", 129600)
          ])
       }
       else {
