@@ -22,7 +22,7 @@ export default function Layout({ title, keywords, description, children }) {
                </div>
                <div className="md:w-4/6 px-4">
                   {children}
-                  <p className="text-white test-xs mb-4">NS: Not Started FT:  Match Finished | PST: Postponded | 1H: First Half | 2H: Second half | HT : Halftime </p>
+                  <p className="text-white text-xs mb-4">NS: Not Started FT:  Match Finished | PST: Postponded | 1H: First Half | 2H: Second half | HT : Halftime </p>
                </div>
                <div className="md:w-1/6 py-4 text-center">
                </div>

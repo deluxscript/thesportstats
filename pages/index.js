@@ -3,6 +3,7 @@ import DateNav from '../components/dateNav'
 import Layout from '../components/Layout'
 import LeagueBox from '../components/LeagueBox'
 import { getFixtures } from '../lib/api'
+import Link from 'next/link'
 
 export default function Home(data) {
    const fixtureData = data.data.response
@@ -20,6 +21,13 @@ export default function Home(data) {
                <LeagueBox details = { evt[1] } />
             </div>
          ))}
+         <div className='pt-4 pb-4 text-center'>
+            <Link href="/matches/2022-03-05">
+               <a className="rounded-md bg-statsBgColor text-xs p-2 text-white text-xl">
+                  Show All Matches
+               </a>
+            </Link>
+         </div>
        </div>
     </Layout>
   )
