@@ -22,7 +22,7 @@ export default function Home(data) {
             </div>
          ))}
          <div className='pt-4 pb-4 text-center'>
-            <Link href="/matches/2022-03-06">
+            <Link href="/matches/2022-03-12">
                <a className="rounded-md bg-statsBgColor text-xs p-2 text-white text-xl">
                   Show All Matches
                </a>

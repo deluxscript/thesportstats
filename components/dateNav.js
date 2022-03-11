@@ -56,7 +56,7 @@ export default function DateNav(){
          <h2 className="text-white text-lg py-2 font-bold mt-6">All Matches - { inWords.toLocaleDateString("en-US", options) }</h2>
          <div className='pt-4 pb-4 text-center text-white'>
             <span className='mr-2 font-bold'>If league matches are incomplete, kindly click</span>
-            <Link href="/matches/2022-03-06">
+            <Link href="/matches/2022-03-12">
                <a className="rounded-md bg-statsBgColor text-xs p-2 text-white">
                   Show All Matches
                </a>
